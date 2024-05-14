@@ -1,10 +1,8 @@
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.lang.Object;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
