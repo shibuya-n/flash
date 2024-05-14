@@ -13,7 +13,7 @@ public class Main {
             System.err.println( "Failed to initialize LaF" );
         }
         UIManager.getLookAndFeelDefaults()
-                .put("defaultFont", new Font("Tahoma", Font.PLAIN, 14));
+                .put("defaultFont", new Font("URW Gothic", Font.PLAIN, 14));
 
 
         // set up JFrame border layout
@@ -30,7 +30,7 @@ public class Main {
 
         // make title
         JLabel title = new JLabel("FLASH REVIEW");
-        title.setFont(new Font("URW Gothic", Font.PLAIN, 45));
+        title.setFont(new Font("URW Gothic", Font.PLAIN, 60));
         title.setHorizontalAlignment(JLabel.CENTER);
 
 
