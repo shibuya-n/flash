@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.awt.*;
 import java.util.ArrayList;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.*;
+import com.formdev.flatlaf.themes.*;
 
 
 public class Main {
@@ -14,7 +15,7 @@ public class Main {
        // formatting
 
         try {
-            UIManager.setLookAndFeel( new FlatLightLaf() );
+            UIManager.setLookAndFeel( new FlatMacDarkLaf() );
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize LaF" );
         }

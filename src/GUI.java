@@ -70,18 +70,42 @@ public class GUI extends JFrame {
 
     public JPanel makeSouthPanel(JPanel window){
 
+        // boolean has to be final to be accessed within
+        final boolean[] isOpen = {false};
+
         // grid layout
+
+
         JPanel subPanel = new JPanel();
-        subPanel.setLayout(new GridLayout(1,2,15,20));
+        subPanel.setLayout(new GridLayout(1,3,15,20));
 
         // help button
         JButton helpButton = new JButton("help");
 
         helpButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e){
 
-            }
+                // makes sure that help can only be opened once 
+                while (!isOpen[0]) {
+                    if (!isOpen[0]) {
+
+
+                        JFrame helpWindow = new JFrame("help");
+
+
+                        helpWindow.setBounds(500, 500, 920, 850);
+                        helpWindow.setVisible(true);
+                    }
+                    isOpen[0] = true;
+
+
+                }
+
+                }
+
+
         });
 
         // create deck
@@ -91,6 +115,17 @@ public class GUI extends JFrame {
         createDeckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+
+            }
+        });
+
+        // create settings
+        JButton settingsButton = new JButton("help");
+
+        settingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+
 
             }
         });
