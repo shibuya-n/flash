@@ -63,9 +63,6 @@ public class Main {
     public static Font loadFonts(String fontType){
         // https://stackoverflow.com/questions/5652344/how-can-i-use-a-custom-font-in-java
 
-        GraphicsEnvironment GE = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        String availableFonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-
         File folder = new File("src/Space_Mono");
         File[] listOfFiles = folder.listFiles();
         try {
@@ -79,10 +76,6 @@ public class Main {
                     }
 
 
-
-
-
-
                 }
             }
         }
@@ -91,4 +84,7 @@ public class Main {
         }
         return null;
     }
+
+
+
 }

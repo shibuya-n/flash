@@ -37,6 +37,7 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e){
 
+
             }
         });
 
@@ -71,7 +72,8 @@ public class GUI extends JFrame {
     public JPanel makeSouthPanel(JPanel window){
 
         // boolean has to be final to be accessed within
-        final boolean[] isOpen = {false};
+        final boolean[] isHelpOpen = {false};
+        final boolean[] isSettingsOpen = {false};
 
         // grid layout
 
@@ -88,21 +90,18 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e){
 
                 // makes sure that help can only be opened once 
-                while (!isOpen[0]) {
-                    if (!isOpen[0]) {
+                while (!isHelpOpen[0]) {
+                    if (!isHelpOpen[0]) {
 
 
                         JFrame helpWindow = new JFrame("help");
 
 
-                        helpWindow.setBounds(500, 500, 920, 850);
+                        helpWindow.setBounds(500, 500, 720, 650);
                         helpWindow.setVisible(true);
                     }
-                    isOpen[0] = true;
-
-
+                    isHelpOpen[0] = true;
                 }
-
                 }
 
 
@@ -120,23 +119,62 @@ public class GUI extends JFrame {
         });
 
         // create settings
-        JButton settingsButton = new JButton("help");
+        JButton settingsButton = new JButton("settings");
 
         settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
 
+                // makes sure that help can only be opened once
+                while (!isSettingsOpen[0]) {
+                    if (!isSettingsOpen[0]) {
+
+
+                        JFrame helpWindow = new JFrame("settings");
+
+
+                        helpWindow.setBounds(500, 500, 720, 650);
+                        helpWindow.setVisible(true);
+                    }
+                    isSettingsOpen[0] = true;
+
+
+                }
 
             }
+
         });
 
         subPanel.add(helpButton);
+        subPanel.add(settingsButton);
         subPanel.add(createDeckButton);
 
         window.add(subPanel);
 
         return window;
 
+
+    }
+
+    // function that replaces panel with
+    public JFrame makeQuiz(JFrame window){
+        //https://stackoverflow.com/questions/35960292/how-to-make-back-button-work-from-the-second-frame-to-the-first-frame
+
+
+        window.setVisible(false);
+        JFrame quiz = new JFrame("tab2");
+
+        // test button
+        JButton backButton = new JButton("back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window.setVisible(true);
+            }
+        }
+        );
+
+        return quiz;
 
     }
 
