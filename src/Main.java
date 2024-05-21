@@ -16,7 +16,7 @@ public class Main {
 
         try {
             UIManager.setLookAndFeel( new FlatMacDarkLaf() );
-        } catch( Exception ex ) {
+        } catch(Exception ex) {
             System.err.println( "Failed to initialize LaF" );
         }
         UIManager.getLookAndFeelDefaults().put("defaultFont",loadFonts("Regular").deriveFont(Font.PLAIN, 14f));
@@ -43,8 +43,9 @@ public class Main {
 
         // make center menu
         GUI makeGUI = new GUI();
+        makeGUI.makeMenu(menu, window);
 
-        makeGUI.makeMenu(menu);
+        // makes the bottom bar
         makeGUI.makeSouthPanel(southPanel);
 
         mainPanel.add(title, BorderLayout.NORTH);

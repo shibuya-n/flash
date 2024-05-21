@@ -7,7 +7,7 @@ public class GUI extends JFrame {
 
 
     // make middle portion of GUI
-    public JPanel makeMenu(JPanel window){
+    public JPanel makeMenu(JPanel menu, JFrame window){
         // test array
         String[] test = {"test1", "test2"};
 
@@ -36,6 +36,15 @@ public class GUI extends JFrame {
         goButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                // change from main menu to quiz
+                window.getRootPane().getContentPane().removeAll();
+
+
+
+                window.add(makeQuiz(window));
+                window.revalidate();
+                window.repaint();
+
 
 
             }
@@ -62,11 +71,11 @@ public class GUI extends JFrame {
         subPanel.add(dropdownCombo);
         subPanel.add(challengeButton);
 
-        window.add(subPanel);
+        menu.add(subPanel);
 
 
 
-        return window;
+        return menu;
     }
 
     public JPanel makeSouthPanel(JPanel window){
@@ -157,24 +166,59 @@ public class GUI extends JFrame {
     }
 
     // function that replaces panel with
-    public JFrame makeQuiz(JFrame window){
-        //https://stackoverflow.com/questions/35960292/how-to-make-back-button-work-from-the-second-frame-to-the-first-frame
+    public JPanel makeQuiz(JFrame window){
 
 
-        window.setVisible(false);
-        JFrame quiz = new JFrame("tab2");
+        // replace old menu with the quiz ui
+        JPanel newQuiz = new JPanel();
+
 
         // test button
         JButton backButton = new JButton("back");
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                window.setVisible(true);
+                // readds the main menu
+                JPanel mainPanel = new JPanel();
+                mainPanel.setLayout(new BorderLayout());
+
+                JPanel menu = new JPanel();
+                menu.setLayout(new FlowLayout());
+
+                JPanel southPanel = new JPanel();
+                southPanel.setLayout(new FlowLayout());
+
+                // make title
+                JLabel title = new JLabel("flash_review");
+                title.setHorizontalAlignment(JLabel.CENTER);
+
+
+                // make center menu
+                GUI makeGUI = new GUI();
+
+                makeGUI.makeMenu(menu, window);
+                makeGUI.makeSouthPanel(southPanel);
+
+                mainPanel.add(title, BorderLayout.NORTH);
+                mainPanel.add(menu, BorderLayout.CENTER);
+                mainPanel.add(southPanel, BorderLayout.SOUTH);
+                mainPanel.setBorder(BorderFactory.createEmptyBorder(0,10,15,10));
+
+
+                mainPanel.add(title, BorderLayout.NORTH);
+                mainPanel.add(menu, BorderLayout.CENTER);
+                mainPanel.add(southPanel, BorderLayout.SOUTH);
+                mainPanel.setBorder(BorderFactory.createEmptyBorder(0,10,15,10));
+                window.add(mainPanel);
+
+                window.revalidate();
+                window.repaint();
+
             }
         }
         );
 
-        return quiz;
+        return newQuiz;
 
     }
 
