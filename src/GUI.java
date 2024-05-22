@@ -1,4 +1,7 @@
+import com.formdev.flatlaf.icons.FlatHelpButtonIcon;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,6 +96,7 @@ public class GUI extends JFrame {
         // help button
         JButton helpButton = new JButton("help");
 
+
         helpButton.addActionListener(new ActionListener() {
 
             @Override
@@ -171,6 +175,13 @@ public class GUI extends JFrame {
 
         // replace old menu with the quiz ui
         JPanel newQuiz = new JPanel();
+        newQuiz.setLayout(new BorderLayout());
+
+        // top panel UI
+        JPanel northPanel = new JPanel();
+
+
+
 
 
         // test button
@@ -179,6 +190,8 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // readds the main menu
+                window.getContentPane().removeAll();
+
                 JPanel mainPanel = new JPanel();
                 mainPanel.setLayout(new BorderLayout());
 
@@ -191,6 +204,7 @@ public class GUI extends JFrame {
                 // make title
                 JLabel title = new JLabel("flash_review");
                 title.setHorizontalAlignment(JLabel.CENTER);
+                title.setFont(Main.loadFonts("Regular").deriveFont(Font.PLAIN, 30f));
 
 
                 // make center menu
@@ -217,6 +231,19 @@ public class GUI extends JFrame {
             }
         }
         );
+        //backButton.setPreferredSize(new Dimension(10,50));
+        backButton.setBounds(0,50,25,50);
+
+        // fill northPanel
+        northPanel.add(backButton);
+//        JLabel filler1 = new JLabel("       ");
+//        JLabel filler2 = new JLabel("       ");
+//        northPanel.add(filler1);
+//        northPanel.add(filler2);
+
+        newQuiz.setBorder(BorderFactory.createEmptyBorder(0,10,15,10));
+        newQuiz.add(northPanel, BorderLayout.NORTH);
+
 
         return newQuiz;
 

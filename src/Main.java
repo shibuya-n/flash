@@ -22,8 +22,11 @@ public class Main {
         UIManager.getLookAndFeelDefaults().put("defaultFont",loadFonts("Regular").deriveFont(Font.PLAIN, 14f));
 
 
+
+
         // set up JFrame border layout
         JFrame window = new JFrame("flash_review");
+
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = new JPanel();
