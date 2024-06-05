@@ -1,7 +1,4 @@
-import com.formdev.flatlaf.icons.FlatHelpButtonIcon;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,15 +12,12 @@ public class GUI extends JFrame {
         String[] test = {"test1", "test2"};
 
         // grid layout
-
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridLayout(3, 1, 5,10));
 
         // button + dropdown container
-
         JPanel dropdownCombo = new JPanel();
         dropdownCombo.setLayout(new GridLayout(1, 2, 10, 10));
-
 
         // Label
         JLabel unitDescription = new JLabel("select unit");
@@ -35,49 +29,33 @@ public class GUI extends JFrame {
 
         // Button
         JButton goButton = new JButton("go");
-
         goButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 // change from main menu to quiz
                 window.getRootPane().getContentPane().removeAll();
-
-
-
                 window.add(makeQuiz(window));
                 window.revalidate();
                 window.repaint();
-
-
-
             }
         });
 
         // Challenge Mode
         JButton challengeButton = new JButton("challenge mode");
-
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-
             }
         });
 
         // add to dropdown and button container
         dropdownCombo.add(unitSelect);
         dropdownCombo.add(goButton);
-
-
         subPanel.add(unitDescription);
-//        subPanel.add(unitSelect);
-//        subPanel.add(goButton);
         subPanel.add(dropdownCombo);
         subPanel.add(challengeButton);
 
         menu.add(subPanel);
-
-
-
         return menu;
     }
 
@@ -175,17 +153,20 @@ public class GUI extends JFrame {
 
         // replace old menu with the quiz ui
         JPanel newQuiz = new JPanel();
-        newQuiz.setLayout(new BorderLayout());
+        newQuiz.setLayout(new GridBagLayout());
+        newQuiz.setBorder(BorderFactory.createEmptyBorder(10,10,15,10));
 
-        // top panel UI
-        JPanel northPanel = new JPanel();
-
-
-
-
-
-        // test button
+        // back button + its layout
         JButton backButton = new JButton("back");
+        GridBagConstraints buttonLayout = layoutSetter(1,1,0,0);
+        buttonLayout.anchor = GridBagConstraints.NORTHWEST;
+
+        // display # of cards left
+        JLabel cardsLeft = new JLabel("x cards left");
+        cardsLeft.setForeground(Color.GREEN);
+        GridBagConstraints remainingCardsLayout = layoutSetter(1,1,0,0);
+        remainingCardsLayout.anchor = GridBagConstraints.SOUTH;
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -223,6 +204,8 @@ public class GUI extends JFrame {
                 mainPanel.add(menu, BorderLayout.CENTER);
                 mainPanel.add(southPanel, BorderLayout.SOUTH);
                 mainPanel.setBorder(BorderFactory.createEmptyBorder(0,10,15,10));
+
+                
                 window.add(mainPanel);
 
                 window.revalidate();
@@ -231,22 +214,27 @@ public class GUI extends JFrame {
             }
         }
         );
-        //backButton.setPreferredSize(new Dimension(10,50));
-        backButton.setBounds(0,50,25,50);
 
-        // fill northPanel
-        northPanel.add(backButton);
-//        JLabel filler1 = new JLabel("       ");
-//        JLabel filler2 = new JLabel("       ");
-//        northPanel.add(filler1);
-//        northPanel.add(filler2);
+        // add all the items and the location of object
+        newQuiz.add(backButton, buttonLayout);
+        newQuiz.add(cardsLeft, remainingCardsLayout);
 
-        newQuiz.setBorder(BorderFactory.createEmptyBorder(0,10,15,10));
-        newQuiz.add(northPanel, BorderLayout.NORTH);
 
 
         return newQuiz;
 
+    }
+
+
+    // helps simplify setting up a layout with Gridbag
+    public GridBagConstraints layoutSetter(double xWeight, double yWeight, int xGrid, int yGrid){
+        GridBagConstraints toReturn = new GridBagConstraints();
+        toReturn.weightx = xWeight;
+        toReturn.weighty = yWeight;
+        toReturn.gridx = xGrid;
+        toReturn.gridy = yGrid;
+
+        return toReturn;
     }
 
 }

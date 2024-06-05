@@ -3,8 +3,6 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 import java.util.ArrayList;
-
-import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.themes.*;
 
 
@@ -20,9 +18,6 @@ public class Main {
             System.err.println( "Failed to initialize LaF" );
         }
         UIManager.getLookAndFeelDefaults().put("defaultFont",loadFonts("Regular").deriveFont(Font.PLAIN, 14f));
-
-
-
 
         // set up JFrame border layout
         JFrame window = new JFrame("flash_review");
@@ -51,6 +46,7 @@ public class Main {
         // makes the bottom bar
         makeGUI.makeSouthPanel(southPanel);
 
+        // loads everything
         mainPanel.add(title, BorderLayout.NORTH);
         mainPanel.add(menu, BorderLayout.CENTER);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
@@ -59,9 +55,6 @@ public class Main {
         window.pack();
         window.setBounds(500,500,920,850);
         window.setVisible(true);
-
-
-
     }
 
     public static Font loadFonts(String fontType){
