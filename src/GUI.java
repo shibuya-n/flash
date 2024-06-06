@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+
 
 public class GUI extends JFrame {
 
@@ -64,10 +64,41 @@ public class GUI extends JFrame {
         // boolean has to be final to be accessed within
         final boolean[] isHelpOpen = {false};
         final boolean[] isSettingsOpen = {false};
+        final boolean[] isCreateDeckOpen = {false};
+
+        //check if smaller windows are opened
+        WindowListener checkOpenWindow = new WindowAdapter() {
+            public void windowOpened(WindowEvent evt) {
+                Frame frame = (Frame) evt.getSource();
+                String frameName =  frame.getTitle();
+
+                if (frameName.equals("help")){
+                    isHelpOpen[0] = true;
+                }
+                else if (frameName.equals("settings")){
+                    isSettingsOpen[0] = true;
+                }
+                else {
+                    isCreateDeckOpen[0] = true;
+                }
+            }
+            public void windowClosing(WindowEvent evt) {
+                Frame frame = (Frame) evt.getSource();
+                String frameName =  frame.getTitle();
+
+                if (frameName.equals("help")){
+                    isHelpOpen[0] =  false;
+                }
+                else if (frameName.equals("settings")){
+                    isSettingsOpen[0] = false;
+                }
+                else {
+                    isCreateDeckOpen[0] = false;
+                }
+            }
+        };
 
         // grid layout
-
-
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new GridLayout(1,3,15,20));
 
@@ -79,14 +110,14 @@ public class GUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e){
+                JFrame helpWindow = new JFrame("help");
+                helpWindow.addWindowListener(checkOpenWindow);
 
-                // makes sure that help can only be opened once 
+
+
+                // makes sure that help can only be opened once
                 while (!isHelpOpen[0]) {
                     if (!isHelpOpen[0]) {
-
-
-                        JFrame helpWindow = new JFrame("help");
-
 
                         helpWindow.setBounds(500, 500, 720, 650);
                         helpWindow.setVisible(true);
@@ -94,6 +125,7 @@ public class GUI extends JFrame {
                     isHelpOpen[0] = true;
                 }
                 }
+
 
 
         });
@@ -117,24 +149,24 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e){
 
                 // makes sure that help can only be opened once
+                JFrame settings = new JFrame("settings");
+                settings.addWindowListener(checkOpenWindow);
+
+
+
+                // makes sure that help can only be opened once
                 while (!isSettingsOpen[0]) {
                     if (!isSettingsOpen[0]) {
 
-
-                        JFrame helpWindow = new JFrame("settings");
-
-
-                        helpWindow.setBounds(500, 500, 720, 650);
-                        helpWindow.setVisible(true);
+                        settings.setBounds(500, 500, 720, 650);
+                        settings.setVisible(true);
                     }
                     isSettingsOpen[0] = true;
-
-
                 }
-
             }
 
         });
+
 
         subPanel.add(helpButton);
         subPanel.add(settingsButton);
@@ -147,7 +179,7 @@ public class GUI extends JFrame {
 
     }
 
-    // function that replaces panel with
+    // function that replaces main menu with quiz
     public JPanel makeQuiz(JFrame window){
 
 
@@ -236,5 +268,4 @@ public class GUI extends JFrame {
 
         return toReturn;
     }
-
 }
