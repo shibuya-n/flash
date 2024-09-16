@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="button works, fix placement">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QueueSystem" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueueSystem.java" afterDir="false" />
-    </list>
+    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="working on backend" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717662231007</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="working on backend">
+      <option name="closed" value="true" />
+      <created>1726471220076</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726471220076</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,7 +167,8 @@
     <MESSAGE value="started on making gui for quiz" />
     <MESSAGE value="back button doesn't appear &#10;&#10;made go button work, erases menu but the ui does not appear" />
     <MESSAGE value="work on quiz panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="work on quiz panel" />
+    <MESSAGE value="working on backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on backend" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
