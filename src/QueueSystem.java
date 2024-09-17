@@ -21,15 +21,45 @@ public class QueueSystem {
             cardDeck.add(listOfFiles[i]);
         }
 
-        for (int i = 0; i < cardDeck.size(); i++){
-            int randInt = (int) (Math.random() * (cardDeck.size()-1) + 1);
-            File toInput = cardDeck.remove(i);
+        while (!cardDeck.isEmpty()){
+            int randInt = (int) (Math.random() * (cardDeck.size()));
+            File toInput = cardDeck.remove(randInt);
+            Card x = new Card(toInput, toInput.getName(), "backPlaceHolder");
+            cardQueue.add(x);
+            System.out.println(x.getFrontDescription());
+        }
+//        for (int i = 0; i < cardDeck.size(); i++){
+//            int randInt = (int) (Math.random() * (cardDeck.size()));
+//            File toInput = cardDeck.remove(randInt);
+//            Card x = new Card(toInput, toInput.getName(), "backPlaceHolder");
+//            cardQueue.add(x);
+//            System.out.println(x.getFrontDescription());
+//        }
+    }
+
+    public Card removeCard(){
+        return cardQueue.remove();
+    }
+    public void shiftToBack(Card input){
+        cardQueue.add(input);
+        System.out.println("queue " + cardQueue);
+    }
+    public Card getCard(){
+        return cardQueue.peek();
+    }
+
+    public boolean checkIfEmpty(){
+        if (cardQueue.isEmpty()){
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
-    public String parse(){
 
-    }
+
+
 
 
 }

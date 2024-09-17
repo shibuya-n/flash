@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import com.formdev.flatlaf.themes.*;
 
 
@@ -55,6 +57,35 @@ public class Main {
         window.pack();
         window.setBounds(500,500,920,850);
         window.setVisible(true);
+
+        // test space for queuesystem
+
+        QueueSystem test = new QueueSystem("src/test-deck");
+        test.shuffleAndLoad();
+
+        boolean run = true;
+
+        while(run & !test.checkIfEmpty()){
+            Card thisCard = test.getCard();
+
+            System.out.println(thisCard.getFrontDescription());
+            Scanner inputObject = new Scanner(System.in);
+            System.out.println("Did you get it right? (y/n)");
+            String input = inputObject.nextLine();
+
+            if (input.equals("done")){
+                run = false;
+            }
+            else{
+                if (input.equals("y")){
+                    test.removeCard();
+                }
+                else {
+                    test.shiftToBack(test.removeCard());
+                }
+
+            }
+        }
     }
 
     public static Font loadFonts(String fontType){

@@ -14,6 +14,12 @@ public class Card {
 
     }
 
+    public String getFrontDescription(){
+        return frontDescription;
+    }
+
+
+
 
 
 }
