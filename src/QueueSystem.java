@@ -24,17 +24,11 @@ public class QueueSystem {
         while (!cardDeck.isEmpty()){
             int randInt = (int) (Math.random() * (cardDeck.size()));
             File toInput = cardDeck.remove(randInt);
-            Card x = new Card(toInput, toInput.getName(), "backPlaceHolder");
+            Card x = new Card(toInput);
             cardQueue.add(x);
             System.out.println(x.getFrontDescription());
         }
-//        for (int i = 0; i < cardDeck.size(); i++){
-//            int randInt = (int) (Math.random() * (cardDeck.size()));
-//            File toInput = cardDeck.remove(randInt);
-//            Card x = new Card(toInput, toInput.getName(), "backPlaceHolder");
-//            cardQueue.add(x);
-//            System.out.println(x.getFrontDescription());
-//        }
+
     }
 
     public Card removeCard(){

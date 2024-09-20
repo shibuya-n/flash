@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="working on backend">
-      <change afterPath="$PROJECT_DIR$/src/test-deck/test1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test-deck/test2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test-deck/test3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test-deck/test4.txt" afterDir="false" />
+    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="uploading test deck">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QueueSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueueSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726573181686</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="uploading test deck">
+      <option name="closed" value="true" />
+      <created>1726667023735</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1726667023736</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,7 +196,8 @@
     <MESSAGE value="back button doesn't appear &#10;&#10;made go button work, erases menu but the ui does not appear" />
     <MESSAGE value="work on quiz panel" />
     <MESSAGE value="working on backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on backend" />
+    <MESSAGE value="uploading test deck" />
+    <option name="LAST_COMMIT_MESSAGE" value="uploading test deck" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
