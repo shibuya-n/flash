@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -8,9 +11,14 @@ public class QueueSystem {
     Queue<Card> cardQueue = new LinkedList<>();
     ArrayList<File> cardDeck = new ArrayList<File>();
 
+    ArrayList<String> keys = new ArrayList<>();
+
     File folder;
-    public QueueSystem(String input){
+
+    File key;
+    public QueueSystem(String input, String k){
         folder = new File(input);
+        key = new File(k);
     }
 
 
@@ -28,6 +36,15 @@ public class QueueSystem {
             cardQueue.add(x);
             System.out.println(x.getFrontDescription());
         }
+
+    }
+
+    public void getKeys() throws FileNotFoundException { // <-- throws an exception if the file isn't found
+
+        // first need to make a fileReader object
+        FileReader input = new FileReader(key);
+        // then use buffered reader to read through it
+        //while ()
 
     }
 
