@@ -6,13 +6,13 @@ public class Card {
     String frontDescription;
     String backDescription;
 
-    public Card (File input){
+    public Card (File input, String front, String back){
 
         cardFile = input;
 
         // uses parseDescription to get the front/back portions of the name
-        frontDescription = parseDescription(input, true);
-        backDescription = parseDescription(input, false);
+        frontDescription = front;
+        backDescription = back;
 
     }
 

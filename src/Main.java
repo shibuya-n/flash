@@ -60,8 +60,12 @@ public class Main {
 
         // test space for queuesystem
 
-        QueueSystem test = new QueueSystem("src/test-deck");
-        test.shuffleAndLoad();
+        QueueSystem test = new QueueSystem("src/test-deck", "src/test-deck/key.txt");
+        try {
+            test.getKeysAndLoad();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         boolean run = true;
 
@@ -86,6 +90,7 @@ public class Main {
 
             }
         }
+
     }
 
     public static Font loadFonts(String fontType){

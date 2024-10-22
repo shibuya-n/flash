@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="working on the queuesystem and linking it up, etc">
-      <change afterPath="$PROJECT_DIR$/src/test-deck/key.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QueueSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueueSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test-deck/front1_back1 (1).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/test_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test-deck/front1_back1 (2).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/test_2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test-deck/front1_back1 (3).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/test_3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test-deck/front1_back1 (4).txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/test_4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test-deck/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test-deck/test_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/four.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test-deck/test_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/one.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test-deck/test_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/three.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test-deck/test_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test-deck/two.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726816843584</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="working on the queuesystem and linking it up, etc">
+      <option name="closed" value="true" />
+      <created>1728891094913</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1728891094913</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
