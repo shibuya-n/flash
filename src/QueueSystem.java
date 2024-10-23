@@ -60,7 +60,7 @@ public class QueueSystem {
                 String backDescription = parsedKey[2];
 
                 if (parsedKey[0].equals(fileName)){
-                    System.out.println(fileName);
+                    
                     Card x = new Card(getFile, frontDescription, backDescription);
                     cardDeck.add(x);
                 }
@@ -80,7 +80,7 @@ public class QueueSystem {
     }
     public void shiftToBack(Card input){
         cardQueue.add(input);
-        System.out.println("queue " + cardQueue);
+
     }
     public Card getCard(){
         return cardQueue.peek();
