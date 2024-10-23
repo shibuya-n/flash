@@ -58,38 +58,7 @@ public class Main {
         window.setBounds(500,500,920,850);
         window.setVisible(true);
 
-        // test space for queuesystem
 
-        QueueSystem test = new QueueSystem("src/test-deck", "src/test-deck/key.txt");
-        try {
-            test.getKeysAndLoad();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        boolean run = true;
-
-        while(run & !test.checkIfEmpty()){
-            Card thisCard = test.getCard();
-
-            System.out.println(thisCard.getFrontDescription());
-            Scanner inputObject = new Scanner(System.in);
-            System.out.println("Did you get it right? (y/n)");
-            String input = inputObject.nextLine();
-
-            if (input.equals("done")){
-                run = false;
-            }
-            else{
-                if (input.equals("y")){
-                    test.removeCard();
-                }
-                else {
-                    test.shiftToBack(test.removeCard());
-                }
-
-            }
-        }
 
     }
 

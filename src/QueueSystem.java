@@ -19,6 +19,12 @@ public class QueueSystem {
     public QueueSystem(String input, String k){
         folder = new File(input);
         key = new File(k);
+
+        try {
+            getKeysAndLoad();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

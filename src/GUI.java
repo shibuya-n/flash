@@ -1,15 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 
 public class GUI extends JFrame {
+    File folder = new File("src/decks");
+    // test array
+    File[] listOfFiles = folder.listFiles();
+
+    // use method to split folder names and reformat it
+    String[] listOfTopics = convertToTopic(listOfFiles);
 
 
     // make middle portion of GUI
     public JPanel makeMenu(JPanel menu, JFrame window){
-        // test array
-        String[] test = {"test1", "test2"};
+
 
         // grid layout
         JPanel subPanel = new JPanel();
@@ -25,7 +31,7 @@ public class GUI extends JFrame {
         unitDescription.setFont(new Font("Tahoma", Font.BOLD, 20));
 
         // Dropdown
-        JComboBox unitSelect = new JComboBox(test);
+        JComboBox unitSelect = new JComboBox(listOfTopics);
 
         // Button
         JButton goButton = new JButton("go");
@@ -33,8 +39,10 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e){
                 // change from main menu to quiz
+                int selected = unitSelect.getSelectedIndex();
+
                 window.getRootPane().getContentPane().removeAll();
-                window.add(makeQuiz(window));
+                window.add(makeQuiz(window, selected));
                 window.revalidate();
                 window.repaint();
             }
@@ -180,7 +188,13 @@ public class GUI extends JFrame {
     }
 
     // function that replaces main menu with quiz
-    public JPanel makeQuiz(JFrame window){
+    public JPanel makeQuiz(JFrame window, int selected){
+        // uses selected to find indice of the folder that was selected and to get its path and key to make new QueueSystem object
+        String folderPath = listOfFiles[selected].getPath();
+        String key = folderPath + "/key.txt";
+
+        QueueSystem quiz = new QueueSystem(folderPath, key);
+
 
 
         // replace old menu with the quiz ui
@@ -268,4 +282,22 @@ public class GUI extends JFrame {
 
         return toReturn;
     }
+
+    // convert decks folder into a list of Strings of the topic names
+    public String[] convertToTopic(File[] input){
+        String[] toReturn = new String[input.length];
+        for (int i = 0; i < input.length; i++){
+
+            String toSplit = input[i].getName();
+
+            String[] splitArray = toSplit.split("_",5);
+            String topic = splitArray[0];
+            String number = splitArray[1];
+
+            toReturn[i] = topic + " " + number;
+        }
+
+        return toReturn;
+    }
+
 }
