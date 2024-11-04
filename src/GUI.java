@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+
 
 
 public class GUI extends JFrame {
@@ -208,10 +211,16 @@ public class GUI extends JFrame {
         buttonLayout.anchor = GridBagConstraints.NORTHWEST;
 
         // display # of cards left
+        JPanel cardContainer = new JPanel();
+
         JLabel cardsLeft = new JLabel("x cards left");
         cardsLeft.setForeground(Color.GREEN);
         GridBagConstraints remainingCardsLayout = layoutSetter(1,1,0,0);
+        remainingCardsLayout.fill = GridBagConstraints.HORIZONTAL;
+        cardsLeft.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+
         remainingCardsLayout.anchor = GridBagConstraints.SOUTH;
+        cardContainer.add(cardsLeft, remainingCardsLayout);
 
         backButton.addActionListener(new ActionListener() {
             @Override
