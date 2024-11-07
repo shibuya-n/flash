@@ -4,7 +4,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-
+import java.io.IOException;
 
 
 public class GUI extends JFrame {
@@ -197,7 +197,11 @@ public class GUI extends JFrame {
         String key = folderPath + "/key.txt";
 
         QueueSystem quiz = new QueueSystem(folderPath, key);
-
+        try {
+            quiz.getKeysAndLoad();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
         // replace old menu with the quiz ui
@@ -213,7 +217,7 @@ public class GUI extends JFrame {
         // display # of cards left
         JPanel cardContainer = new JPanel();
 
-        JLabel cardsLeft = new JLabel("x cards left");
+        JLabel cardsLeft = new JLabel( quiz.getCardsLeft() + " cards left");
         cardsLeft.setForeground(Color.GREEN);
         GridBagConstraints remainingCardsLayout = layoutSetter(1,1,0,0);
         remainingCardsLayout.fill = GridBagConstraints.HORIZONTAL;

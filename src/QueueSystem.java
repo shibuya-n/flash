@@ -11,7 +11,6 @@ public class QueueSystem {
 
     ArrayList<Card> cardDeck = new ArrayList<>();
 
-    ArrayList<String> keys = new ArrayList<>();
 
     File folder;
 
@@ -93,6 +92,9 @@ public class QueueSystem {
         else {
             return false;
         }
+    }
+    public int getCardsLeft(){
+        return cardQueue.size();
     }
 
     public String[] parseDescription(String input){
