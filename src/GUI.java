@@ -196,6 +196,7 @@ public class GUI extends JFrame {
         String folderPath = listOfFiles[selected].getPath();
         String key = folderPath + "/key.txt";
 
+        // make new quiz
         QueueSystem quiz = new QueueSystem(folderPath, key);
         try {
             quiz.getKeysAndLoad();
@@ -215,7 +216,7 @@ public class GUI extends JFrame {
         buttonLayout.anchor = GridBagConstraints.NORTHWEST;
 
         // display # of cards left
-        JPanel cardContainer = new JPanel();
+        JPanel numberContainer = new JPanel();
 
         JLabel cardsLeft = new JLabel( quiz.getCardsLeft() + " cards left");
         cardsLeft.setForeground(Color.GREEN);
@@ -224,7 +225,16 @@ public class GUI extends JFrame {
         cardsLeft.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 
         remainingCardsLayout.anchor = GridBagConstraints.SOUTH;
-        cardContainer.add(cardsLeft, remainingCardsLayout);
+        numberContainer.add(cardsLeft, remainingCardsLayout);
+
+        // display card img and information
+
+        JPanel cardHolder = new JPanel();
+        cardHolder.setLayout(new GridLayout(0,2));
+
+        Card x = quiz.getCard();
+        JPanel imageContainer = new JPanel();
+        imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -276,6 +286,7 @@ public class GUI extends JFrame {
 
         // add all the items and the location of object
         newQuiz.add(backButton, buttonLayout);
+        newQuiz.add(cardHolder, CENTER_ALIGNMENT);
         newQuiz.add(cardsLeft, remainingCardsLayout);
 
 

@@ -1,4 +1,9 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class Card {
 
@@ -18,6 +23,25 @@ public class Card {
 
     public String getFrontDescription(){
         return frontDescription;
+    }
+
+    public String getBackDescription(){
+        return backDescription;
+    }
+
+    public Image getImage(){
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(cardFile);
+        } catch (java.io.IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        ImageIcon imageIcon = new ImageIcon(myPicture);
+        Image image = imageIcon.getImage();
+        Image newimg = image.getScaledInstance(60,60, Image.SCALE_SMOOTH);
+
+        return newimg;
     }
 
     public String parseDescription(File input, boolean frontOrBack){
