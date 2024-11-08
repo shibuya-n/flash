@@ -235,7 +235,9 @@ public class GUI extends JFrame {
         Card x = quiz.getCard();
         JPanel imageContainer = new JPanel();
         imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
-
+        cardHolder.add(imageContainer);
+        GridBagConstraints cardHolderLayout = layoutSetter(1,1,0,0);
+        cardHolderLayout.anchor =  GridBagConstraints.CENTER;
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -286,7 +288,7 @@ public class GUI extends JFrame {
 
         // add all the items and the location of object
         newQuiz.add(backButton, buttonLayout);
-        newQuiz.add(cardHolder, CENTER_ALIGNMENT);
+        newQuiz.add(cardHolder, cardHolderLayout);
         newQuiz.add(cardsLeft, remainingCardsLayout);
 
 

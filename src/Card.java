@@ -32,16 +32,16 @@ public class Card {
     public Image getImage(){
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(cardFile);
+            myPicture = ImageIO.read(new File(cardFile.getAbsolutePath()));
         } catch (java.io.IOException ioe) {
             ioe.printStackTrace();
         }
 
         ImageIcon imageIcon = new ImageIcon(myPicture);
         Image image = imageIcon.getImage();
-        Image newimg = image.getScaledInstance(60,60, Image.SCALE_SMOOTH);
+        Image toReturn = image.getScaledInstance(60,60, Image.SCALE_SMOOTH);
 
-        return newimg;
+        return toReturn;
     }
 
     public String parseDescription(File input, boolean frontOrBack){
