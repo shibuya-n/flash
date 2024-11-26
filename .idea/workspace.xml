@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="working on the card GUI system">
+    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
@@ -251,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732615719176</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?">
+      <option name="closed" value="true" />
+      <created>1732650066758</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732650066758</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,7 +288,8 @@
     <MESSAGE value="QueueSystem works, needs some more testing but we should be good -&gt; next is to add some actual tests and do the gui" />
     <MESSAGE value="work on connecting the queuesystem to the GUI" />
     <MESSAGE value="working on the card GUI system" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on the card GUI system" />
+    <MESSAGE value="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

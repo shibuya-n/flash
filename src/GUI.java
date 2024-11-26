@@ -316,10 +316,21 @@ public class GUI extends JFrame {
                     public void actionPerformed(ActionEvent e) {
 
                         // remove the backside of the card and change to the next card
-                        quiz.removeCard();
+                        try {
+                            quiz.removeCard();
+                            newQuiz.remove(newCardHolder);
+                            newQuiz.add(cardHolder, cardHolderLayout);
+                        }
+                        catch (Exception ignored){
+                            newQuiz.remove(newCardHolder);
+                            newQuiz.remove(mouseListener);
 
-                        newQuiz.remove(newCardHolder);
-                        newQuiz.add(cardHolder, cardHolderLayout);
+                            JLabel completion = new JLabel("congrats! you completed this quiz. return to home by pressing the back button.", SwingConstants.CENTER);
+                            newQuiz.add(completion);
+                        }
+
+
+
 
                         window.revalidate();
                         window.repaint();
