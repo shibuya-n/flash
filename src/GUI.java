@@ -211,6 +211,11 @@ public class GUI extends JFrame {
         newQuiz.setLayout(new GridBagLayout());
         newQuiz.setBorder(BorderFactory.createEmptyBorder(10,10,15,10));
 
+        // so the panel can hear key presses
+
+        newQuiz.setFocusable(true);
+        newQuiz.grabFocus();
+        newQuiz.requestFocus();
 
 
 
@@ -249,26 +254,115 @@ public class GUI extends JFrame {
         GridBagConstraints cardHolderLayout = layoutSetter(1,1,0,0);
         cardHolderLayout.anchor =  GridBagConstraints.CENTER;
 
-        newQuiz.addKeyListener(new KeyListener() {
+        KeyEventDispatcher myKeyEventDispatcher = new DefaultFocusManager();
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
+        newQuiz.addMouseListener(new MouseListener() {
 
+            // flips the flashcard on mouse click
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                newQuiz.remove(cardHolder);
+
+                // display card img and information
+
+                JPanel newCardHolder = new JPanel();
+                newCardHolder.setLayout(new GridLayout(5,0));
+                // gets the image of the card and adds it to the display panel
+                JPanel imageContainer = new JPanel();
+                imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
+                newCardHolder.add(imageContainer);
+
+                // gets the card's front description and adds it to the display panel
+                newCardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
+
+                JSeparator descSeparator = new JSeparator(SwingConstants.HORIZONTAL);
+                descSeparator.setForeground(Color.white);
+                descSeparator.setBackground(Color.white);
+                newCardHolder.add(descSeparator);
+
+
+                // gets the card's back description and adds it to the display panel
+                newCardHolder.add(new JLabel(x.getBackDescription(), SwingConstants.CENTER));
+
+                // creates buttons/button holders so you can answer whether you won -> yes or no
+                JPanel buttonHolder = new JPanel();
+                buttonHolder.setLayout(new GridLayout(0,2));
+
+
+                // button if you get it wrong
+                JButton noButton = new JButton("i got it wrong");
+
+                noButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        // remove the backside of the card and change to the next card
+                        quiz.shiftToBack(x);
+
+                        newQuiz.remove(newCardHolder);
+                        newQuiz.add(cardHolder, cardHolderLayout);
+
+                        window.revalidate();
+                        window.repaint();
+                    }
+                });
+
+                // button if you get it right
+                JButton yesButton = new JButton("i got it right");
+
+                yesButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        // remove the backside of the card and change to the next card
+                        quiz.removeCard();
+
+                        newQuiz.remove(newCardHolder);
+                        newQuiz.add(cardHolder, cardHolderLayout);
+
+                        window.revalidate();
+                        window.repaint();
+                    }
+                });
+
+
+                GridBagConstraints cardHolderLayout = layoutSetter(1,1,0,0);
+                cardHolderLayout.anchor =  GridBagConstraints.CENTER;
+                buttonHolder.add(noButton);
+                buttonHolder.add(yesButton);
+                newCardHolder.add(buttonHolder);
+
+
+                newQuiz.add(newCardHolder, cardHolderLayout);
+
+
+
+                window.revalidate();
+                window.repaint();
+            }
 
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void mousePressed(MouseEvent e) {
 
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_SPACE){
-                    System.out.println("hit spacebar");
-                }
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void mouseEntered(MouseEvent e) {
 
             }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+
 
 
         });
@@ -325,11 +419,6 @@ public class GUI extends JFrame {
         newQuiz.add(cardHolder, cardHolderLayout);
         newQuiz.add(cardsLeft, remainingCardsLayout);
 
-        // so the panel can hear key presses
-
-        newQuiz.setFocusable(true);
-        newQuiz.grabFocus();
-        newQuiz.requestFocusInWindow();
 
 
         return newQuiz;

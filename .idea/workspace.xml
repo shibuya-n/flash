@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="work on connecting the queuesystem to the GUI">
+    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="working on the card GUI system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QueueSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueueSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730975727605</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="working on the card GUI system">
+      <option name="closed" value="true" />
+      <created>1732615719175</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732615719176</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -273,7 +279,8 @@
     <MESSAGE value="working on the queuesystem and linking it up, etc" />
     <MESSAGE value="QueueSystem works, needs some more testing but we should be good -&gt; next is to add some actual tests and do the gui" />
     <MESSAGE value="work on connecting the queuesystem to the GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="work on connecting the queuesystem to the GUI" />
+    <MESSAGE value="working on the card GUI system" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on the card GUI system" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
