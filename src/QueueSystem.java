@@ -94,6 +94,7 @@ public class QueueSystem {
         }
     }
     public int getCardsLeft(){
+        System.out.println(cardQueue.size());
         return cardQueue.size();
     }
 

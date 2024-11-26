@@ -53,6 +53,7 @@ public class Main {
         mainPanel.add(menu, BorderLayout.CENTER);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(0,10,15,10));
+
         window.add(mainPanel);
         window.pack();
         window.setBounds(500,500,920,850);

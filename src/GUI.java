@@ -207,8 +207,12 @@ public class GUI extends JFrame {
 
         // replace old menu with the quiz ui
         JPanel newQuiz = new JPanel();
+
         newQuiz.setLayout(new GridBagLayout());
         newQuiz.setBorder(BorderFactory.createEmptyBorder(10,10,15,10));
+
+
+
 
         // back button + its layout
         JButton backButton = new JButton("back");
@@ -218,7 +222,7 @@ public class GUI extends JFrame {
         // display # of cards left
         JPanel numberContainer = new JPanel();
 
-        JLabel cardsLeft = new JLabel( quiz.getCardsLeft() + " cards left");
+        JLabel cardsLeft = new JLabel( quiz.getCardsLeft() + " cards left", SwingConstants.CENTER);
         cardsLeft.setForeground(Color.GREEN);
         GridBagConstraints remainingCardsLayout = layoutSetter(1,1,0,0);
         remainingCardsLayout.fill = GridBagConstraints.HORIZONTAL;
@@ -230,14 +234,44 @@ public class GUI extends JFrame {
         // display card img and information
 
         JPanel cardHolder = new JPanel();
-        cardHolder.setLayout(new GridLayout(0,2));
+        cardHolder.setLayout(new GridLayout(2,0));
 
+        // gets a new card
         Card x = quiz.getCard();
+
+        // gets the image of the card and adds it to the display panel
         JPanel imageContainer = new JPanel();
         imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
         cardHolder.add(imageContainer);
+
+        // gets the card's description and adds it to the display panel
+        cardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
         GridBagConstraints cardHolderLayout = layoutSetter(1,1,0,0);
         cardHolderLayout.anchor =  GridBagConstraints.CENTER;
+
+        newQuiz.addKeyListener(new KeyListener() {
+
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SPACE){
+                    System.out.println("hit spacebar");
+                }
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+
+
+        });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -291,6 +325,11 @@ public class GUI extends JFrame {
         newQuiz.add(cardHolder, cardHolderLayout);
         newQuiz.add(cardsLeft, remainingCardsLayout);
 
+        // so the panel can hear key presses
+
+        newQuiz.setFocusable(true);
+        newQuiz.grabFocus();
+        newQuiz.requestFocusInWindow();
 
 
         return newQuiz;
