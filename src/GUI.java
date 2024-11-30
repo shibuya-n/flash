@@ -1,3 +1,5 @@
+import com.formdev.flatlaf.util.StringUtils;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
@@ -5,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 
 public class GUI extends JFrame {
@@ -56,6 +59,7 @@ public class GUI extends JFrame {
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+
             }
         });
 
@@ -163,6 +167,28 @@ public class GUI extends JFrame {
                 JFrame settings = new JFrame("settings");
                 settings.addWindowListener(checkOpenWindow);
 
+                JPanel panel = new JPanel(new FlowLayout());
+
+                JEditorPane displayHtml = new JEditorPane();
+                displayHtml.setEditable(false);
+
+
+
+                String url = "help.html";
+
+                try {
+                    displayHtml.setPage(url);
+                } catch (IOException k) {
+                    displayHtml.setContentType("text/html");
+                    displayHtml.setText("<html>Page not found.</html>");
+                }
+
+
+
+                JScrollPane scrollPane = new JScrollPane(jEditorPane);
+
+
+
 
 
                 // makes sure that help can only be opened once
@@ -198,11 +224,7 @@ public class GUI extends JFrame {
 
         // make new quiz
         QueueSystem quiz = new QueueSystem(folderPath, key);
-        try {
-            quiz.getKeysAndLoad();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
 
 
         // replace old menu with the quiz ui
@@ -241,7 +263,6 @@ public class GUI extends JFrame {
         JPanel cardHolder = new JPanel();
         cardHolder.setLayout(new GridLayout(2,0));
 
-        // gets a new card
         Card x = quiz.getCard();
 
         // gets the image of the card and adds it to the display panel
@@ -252,105 +273,141 @@ public class GUI extends JFrame {
         // gets the card's description and adds it to the display panel
         cardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
         GridBagConstraints cardHolderLayout = layoutSetter(1,1,0,0);
-        cardHolderLayout.anchor =  GridBagConstraints.CENTER;
+        cardHolderLayout.anchor = GridBagConstraints.CENTER;
 
+        // allows user to click on panel
         KeyEventDispatcher myKeyEventDispatcher = new DefaultFocusManager();
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
-        newQuiz.addMouseListener(new MouseListener() {
+        newQuiz.addMouseListener(new MouseAdapter() {
+
+            // variable to turn clicking on/off
+            boolean enabled = true;
+
+            // gets a new card
+            Card newCard = quiz.getCard();
+            // makes the front and back of the card
+            JPanel[] frontAndBack = flipCard(newCard);
+
+
 
             // flips the flashcard on mouse click
             @Override
             public void mouseClicked(MouseEvent e) {
-
-                newQuiz.remove(cardHolder);
-
-                // display card img and information
-
-                JPanel newCardHolder = new JPanel();
-                newCardHolder.setLayout(new GridLayout(5,0));
-                // gets the image of the card and adds it to the display panel
-                JPanel imageContainer = new JPanel();
-                imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
-                newCardHolder.add(imageContainer);
-
-                // gets the card's front description and adds it to the display panel
-                newCardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
-
-                JSeparator descSeparator = new JSeparator(SwingConstants.HORIZONTAL);
-                descSeparator.setForeground(Color.white);
-                descSeparator.setBackground(Color.white);
-                newCardHolder.add(descSeparator);
+                // stops allowing you to flip flashcards after you've completed it
+                if (enabled){
+                    newQuiz.remove(cardHolder);
+                    newQuiz.remove(frontAndBack[0]);
 
 
-                // gets the card's back description and adds it to the display panel
-                newCardHolder.add(new JLabel(x.getBackDescription(), SwingConstants.CENTER));
+                    // display card img and information and hold the buttons
+                    JPanel newCardHolder = new JPanel();
+                    newCardHolder.setLayout(new GridLayout(2,0));
 
-                // creates buttons/button holders so you can answer whether you won -> yes or no
-                JPanel buttonHolder = new JPanel();
-                buttonHolder.setLayout(new GridLayout(0,2));
+                    // panel to hold the buttons
+                    JPanel buttonHolder = new JPanel();
+                    buttonHolder.setLayout(new GridLayout(0,2));
 
 
-                // button if you get it wrong
-                JButton noButton = new JButton("i got it wrong");
+                    // button if you get it wrong
+                    JButton noButton = new JButton("i got it wrong");
 
-                noButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
+                    noButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            // lets you click when you flip to the next card
+                            enabled = true;
 
-                        // remove the backside of the card and change to the next card
-                        quiz.shiftToBack(x);
-
-                        newQuiz.remove(newCardHolder);
-                        newQuiz.add(cardHolder, cardHolderLayout);
-
-                        window.revalidate();
-                        window.repaint();
-                    }
-                });
-
-                // button if you get it right
-                JButton yesButton = new JButton("i got it right");
-
-                yesButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                        // remove the backside of the card and change to the next card
-                        try {
+                            // moves the old card to the back of the queue
                             quiz.removeCard();
+                            quiz.shiftToBack(newCard);
+
+                            // updates text
+                            cardsLeft.setText(quiz.getCardsLeft() + " cards left");
+
+                            // gets a new card and creates new panels from it
+                            newCard = quiz.getCard();
+                            frontAndBack = flipCard(newCard);
+
+                            // replaces the backside with the new card's panel
                             newQuiz.remove(newCardHolder);
-                            newQuiz.add(cardHolder, cardHolderLayout);
+                            JPanel frontSide = frontAndBack[0];
+                            newQuiz.add(frontSide, cardHolderLayout);
+
+
+                            window.revalidate();
+                            window.repaint();
                         }
-                        catch (Exception ignored){
-                            newQuiz.remove(newCardHolder);
-                            newQuiz.remove(mouseListener);
+                    });
 
-                            JLabel completion = new JLabel("congrats! you completed this quiz. return to home by pressing the back button.", SwingConstants.CENTER);
-                            newQuiz.add(completion);
+                    // button if you get it right
+                    JButton yesButton = new JButton("i got it right");
+
+                    yesButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                            // removes old card from the deck and updates label
+                            quiz.removeCard();
+
+                            cardsLeft.setText(quiz.getCardsLeft() + " cards left");
+
+
+                            // remove the backside of the card and change to the next card if the deck isn't empty
+                           if(!quiz.checkIfEmpty()){
+                                // lets you click when you flip to the next card
+                                enabled = true;
+
+
+
+                                // gets a new card
+                                newCard = quiz.getCard();
+                                // replaces the old panels with the new card's panels
+                                frontAndBack = flipCard(newCard);
+                                newQuiz.remove(newCardHolder);
+
+                                // adds the new card
+                                JPanel frontSide = frontAndBack[0];
+                                newQuiz.add(frontSide, cardHolderLayout);
+                            }
+                            else{
+                                // when cards run out it disables clicking
+                                enabled = false;
+                                newQuiz.remove(newCardHolder);
+
+
+                                JLabel completion = new JLabel("congrats! you completed this quiz. return to home by pressing the back button.", SwingConstants.CENTER);
+                                newQuiz.add(completion, cardHolderLayout);
+                            }
+
+
+
+
+                            window.revalidate();
+                            window.repaint();
                         }
+                    });
 
 
 
 
-                        window.revalidate();
-                        window.repaint();
-                    }
-                });
+                    buttonHolder.add(noButton);
+                    buttonHolder.add(yesButton);
 
-
-                GridBagConstraints cardHolderLayout = layoutSetter(1,1,0,0);
-                cardHolderLayout.anchor =  GridBagConstraints.CENTER;
-                buttonHolder.add(noButton);
-                buttonHolder.add(yesButton);
-                newCardHolder.add(buttonHolder);
-
-
-                newQuiz.add(newCardHolder, cardHolderLayout);
+                    newCardHolder.add(frontAndBack[1]);
+                    newCardHolder.add(buttonHolder);
+                    newQuiz.add(newCardHolder, cardHolderLayout);
 
 
 
-                window.revalidate();
-                window.repaint();
+                    window.revalidate();
+                    window.repaint();
+
+                    // prevents you from flipping on the backside of the flashcard
+                    enabled = false;
+
+                }
+
+
             }
 
             @Override
@@ -372,9 +429,6 @@ public class GUI extends JFrame {
             public void mouseExited(MouseEvent e) {
 
             }
-
-
-
 
         });
         backButton.addActionListener(new ActionListener() {
@@ -465,4 +519,64 @@ public class GUI extends JFrame {
         return toReturn;
     }
 
+    public JPanel[] flipCard(Card x){
+
+        // holds front and back of cards -> front is 0 and back is 1
+        JPanel[] toReturn= new JPanel[2];
+
+        // front panel
+        JPanel frontCardHolder = new JPanel();
+        frontCardHolder.setLayout(new GridLayout(2,0));
+
+
+        // gets the image of the card and adds it to the display panel
+        JPanel imageContainer = new JPanel();
+        imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
+        frontCardHolder.add(imageContainer);
+
+        // gets the card's description and adds it to the display panel
+        frontCardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
+        GridBagConstraints cardHolderLayout = layoutSetter(1,1,0,0);
+        cardHolderLayout.anchor = GridBagConstraints.CENTER;
+
+        KeyEventDispatcher myKeyEventDispatcher = new DefaultFocusManager();
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
+
+        toReturn[0] = frontCardHolder;
+
+        // back panel
+
+        JPanel backCardHolder = new JPanel();
+        backCardHolder.setLayout(new GridLayout(4,0));
+        // gets the image of the card and adds it to the display panel
+        JPanel backImageContainer = new JPanel();
+        backImageContainer.add(new JLabel(new ImageIcon(x.getImage())));
+        backCardHolder.add(backImageContainer);
+
+        // gets the card's front description and adds it to the display panel
+        backCardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
+
+
+        JSeparator descSeparator = new JSeparator(SwingConstants.HORIZONTAL);
+        descSeparator.setForeground(Color.white);
+        descSeparator.setBackground(Color.white);
+        backCardHolder.add(descSeparator);
+
+
+        // gets the card's back description and adds it to the display panel
+        backCardHolder.add(new JLabel(x.getBackDescription(), SwingConstants.CENTER));
+
+        // creates buttons/button holders so you can answer whether you won -> yes or no
+        JPanel buttonHolder = new JPanel();
+        buttonHolder.setLayout(new GridLayout(0,2));
+
+
+        cardHolderLayout.anchor =  GridBagConstraints.CENTER;
+
+
+        toReturn[1]= backCardHolder;
+
+        return toReturn;
+
+    }
 }

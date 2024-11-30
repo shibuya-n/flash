@@ -1,5 +1,4 @@
 import java.io.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -32,6 +31,7 @@ public class QueueSystem {
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++){
             if(!listOfFiles[i].getName().equals("key.txt")){
+
                 fileDeck.add(listOfFiles[i]);
             }
 
@@ -62,6 +62,7 @@ public class QueueSystem {
                     
                     Card x = new Card(getFile, frontDescription, backDescription);
                     cardDeck.add(x);
+
                 }
             }
         }
@@ -74,8 +75,9 @@ public class QueueSystem {
 
     }
 
-    public Card removeCard(){
-        return cardQueue.remove();
+
+    public void removeCard(){
+        cardQueue.remove();
     }
     public void shiftToBack(Card input){
         cardQueue.add(input);
@@ -94,7 +96,7 @@ public class QueueSystem {
         }
     }
     public int getCardsLeft(){
-        System.out.println(cardQueue.size());
+
         return cardQueue.size();
     }
 
