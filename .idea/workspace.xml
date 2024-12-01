@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?&#10;&#10;keep working on making the flashcard portion work">
-      <change afterPath="$PROJECT_DIR$/src/help.html" afterDir="false" />
+    <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="finished flashcard system&#10;&#10;now work on fleshing out rest of program">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QueueSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueueSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/help.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/help.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732650862788</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="finished flashcard system&#10;&#10;now work on fleshing out rest of program">
+      <option name="closed" value="true" />
+      <created>1732944216811</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732944216811</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -302,7 +309,8 @@
     <MESSAGE value="working on the card GUI system" />
     <MESSAGE value="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?" />
     <MESSAGE value="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?&#10;&#10;keep working on making the flashcard portion work" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on the card GUI system&#10;&#10;problems to note: &#10;&#10;does the queuesystem load a new deck everytime? otherwise there will be less and less cards everytime you queue it &#10;&#10;why is there 3 of each card in the deck?&#10;&#10;keep working on making the flashcard portion work" />
+    <MESSAGE value="finished flashcard system&#10;&#10;now work on fleshing out rest of program" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished flashcard system&#10;&#10;now work on fleshing out rest of program" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -45,8 +45,7 @@ public class Main {
         GUI makeGUI = new GUI();
         makeGUI.makeMenu(menu, window);
 
-        // makes the bottom bar
-        makeGUI.makeSouthPanel(southPanel);
+
 
         // loads everything
         mainPanel.add(title, BorderLayout.NORTH);
