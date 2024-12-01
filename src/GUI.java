@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Queue;
 
 
 public class GUI extends JFrame {
@@ -133,7 +134,7 @@ public class GUI extends JFrame {
                 int selected = unitSelect.getSelectedIndex();
 
                 window.getRootPane().getContentPane().removeAll();
-                window.add(makeQuiz(window, selected));
+                window.add(makeQuiz(window, selected, false));
                 window.revalidate();
                 window.repaint();
             }
@@ -144,6 +145,11 @@ public class GUI extends JFrame {
         challengeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                window.getRootPane().getContentPane().removeAll();
+
+                window.add(makeQuiz(window, 0, true));
+                window.revalidate();
+                window.repaint();
 
             }
         });
@@ -162,14 +168,21 @@ public class GUI extends JFrame {
 
 
     // function that replaces main menu with quiz
-    public JPanel makeQuiz(JFrame window, int selected){
+    public JPanel makeQuiz(JFrame window, int selected, boolean isChallenge){
         // uses selected to find indice of the folder that was selected and to get its path and key to make new QueueSystem object
-        String folderPath = listOfFiles[selected].getPath();
-        String key = folderPath + "/key.txt";
+        String folderPath;
+        String key;
 
-        // make new quiz
-        QueueSystem quiz = new QueueSystem(folderPath, key);
 
+        if (!isChallenge){
+             folderPath = listOfFiles[selected].getPath();
+             key = folderPath + "/key.txt";
+        }
+        else {
+            folderPath = "null";
+            key = "null";
+        }
+        QueueSystem quiz = new QueueSystem(folderPath, key, isChallenge);
 
 
         // replace old menu with the quiz ui
@@ -224,6 +237,8 @@ public class GUI extends JFrame {
         KeyEventDispatcher myKeyEventDispatcher = new DefaultFocusManager();
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(myKeyEventDispatcher);
         newQuiz.addMouseListener(new MouseAdapter() {
+            // points var to keep track of how many you get right in challenge mode -> it is in here to be for it to be accessible by the mouse click methods
+            int points = 0;
 
             // variable to turn clicking on/off
             boolean enabled = true;
@@ -264,19 +279,44 @@ public class GUI extends JFrame {
 
                             // moves the old card to the back of the queue
                             quiz.removeCard();
-                            quiz.shiftToBack(newCard);
+                            if (!isChallenge){
+                                quiz.shiftToBack(newCard);
+                            }
 
                             // updates text
                             cardsLeft.setText(quiz.getCardsLeft() + " cards left");
 
-                            // gets a new card and creates new panels from it
-                            newCard = quiz.getCard();
-                            frontAndBack = flipCard(newCard);
+                            // remove the backside of the card and change to the next card if the deck isn't empty
+                            if(!quiz.checkIfEmpty()){
+                                // lets you click when you flip to the next card
+                                enabled = true;
 
-                            // replaces the backside with the new card's panel
-                            newQuiz.remove(newCardHolder);
-                            JPanel frontSide = frontAndBack[0];
-                            newQuiz.add(frontSide, cardHolderLayout);
+
+
+
+
+                                // gets a new card and creates new panels from it
+                                newCard = quiz.getCard();
+                                frontAndBack = flipCard(newCard);
+
+                                // replaces the backside with the new card's panel
+                                newQuiz.remove(newCardHolder);
+                                JPanel frontSide = frontAndBack[0];
+                                newQuiz.add(frontSide, cardHolderLayout);
+                            }
+                            else {
+                                // when cards run out it disables clicking
+                                enabled = false;
+                                newQuiz.remove(newCardHolder);
+                                JLabel completion = new JLabel("congrats! you completed this quiz. return to home by pressing the back button.", SwingConstants.CENTER);
+
+                                // diff message with points if it is a challenge
+                                if (isChallenge) {
+                                    completion.setText("congrats! you completed this quiz. return to home by pressing the back button. points: " + points);
+                                }
+                                newQuiz.add(completion, cardHolderLayout);
+
+                            }
 
 
                             window.revalidate();
@@ -293,6 +333,8 @@ public class GUI extends JFrame {
 
                             // removes old card from the deck and updates label
                             quiz.removeCard();
+                            points++;
+
 
                             cardsLeft.setText(quiz.getCardsLeft() + " cards left");
 
@@ -314,21 +356,27 @@ public class GUI extends JFrame {
                                 JPanel frontSide = frontAndBack[0];
                                 newQuiz.add(frontSide, cardHolderLayout);
                             }
-                            else{
+                           else{
                                 // when cards run out it disables clicking
                                 enabled = false;
                                 newQuiz.remove(newCardHolder);
 
-
                                 JLabel completion = new JLabel("congrats! you completed this quiz. return to home by pressing the back button.", SwingConstants.CENTER);
+
+                                // diff message with points if it is a challenge
+                                if(isChallenge){
+                                    completion.setText("congrats! you completed this quiz. return to home by pressing the back button. points: " + points);
+                                }
+
+
                                 newQuiz.add(completion, cardHolderLayout);
-                            }
+                           }
 
 
 
 
-                            window.revalidate();
-                            window.repaint();
+                           window.revalidate();
+                           window.repaint();
                         }
                     });
 

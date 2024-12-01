@@ -14,25 +14,56 @@ public class QueueSystem {
     File folder;
 
     File key;
-    public QueueSystem(String input, String k){
-        folder = new File(input);
-        key = new File(k);
+    public QueueSystem(String input, String k, boolean isChallenge){
 
-        try {
-            getKeysAndLoad();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (!isChallenge){ // if it isnt a challenge then everything gets loaded normally
+            folder = new File(input);  // use inputted  path name to get the folder
+            key = new File(k); // use inputted key path name the key file name to get the key file
+
+            try {
+                getKeysAndLoad(); // this loads everything into the cardQueue
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            // looks at folder with all the decks and puts them into a folder
+            File decks = new File("src/decks");
+            File[] listOfDecks = decks.listFiles();
+
+            // goes through the decks folder and then looks at each individual deck -> getKeysAndLoad then loads every deck one by one onto cardQueue
+            for (int i = 0; i < listOfDecks.length; i++){
+
+
+                String pathName = "src/decks/" + listOfDecks[i].getName(); // have to add the name of the deck to the path name so we can keep looking at the next deck
+
+
+                File topicFolder = new File(pathName); // use that path name to get the folder
+                folder = topicFolder; // makes that the folder that the getKeysAndLoad function will use to load it into the cardQueue queue
+
+                String keyPath = pathName + "/key.txt"; // use that path name combined with the key file name to get the key file
+                key = new File(keyPath);
+
+                try {
+                    getKeysAndLoad(); // this loads everything into the cardQueue
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
         }
     }
 
 
+
+
     public void getKeysAndLoad() throws IOException { // <-- throws an exception if the file isn't found
         // add files to arraylist
-        File[] listOfFiles = folder.listFiles();
-        for (int i = 0; i < listOfFiles.length; i++){
-            if(!listOfFiles[i].getName().equals("key.txt")){
+        File[] listOfCards = folder.listFiles();
+        for (int i = 0; i < listOfCards.length; i++){
+            if(!listOfCards[i].getName().equals("key.txt")){
 
-                fileDeck.add(listOfFiles[i]);
+                fileDeck.add(listOfCards[i]);
             }
 
         }
