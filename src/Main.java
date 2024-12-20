@@ -32,8 +32,7 @@ public class Main {
         JPanel menu = new JPanel();
         menu.setLayout(new FlowLayout());
 
-        JPanel southPanel = new JPanel();
-        southPanel.setLayout(new FlowLayout());
+
 
         // make title
         JLabel title = new JLabel("flash_review");
@@ -50,14 +49,14 @@ public class Main {
         // loads everything
         mainPanel.add(title, BorderLayout.NORTH);
         mainPanel.add(menu, BorderLayout.CENTER);
-        mainPanel.add(southPanel, BorderLayout.SOUTH);
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(0,10,15,10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(0,10,15,10)); // creates padding for the components
+
+
 
         window.add(mainPanel);
-        window.pack();
-        window.setBounds(500,500,920,850);
+        window.setSize(720,650);
+        window.setLocationRelativeTo(null); // centers the window
         window.setVisible(true);
-
 
 
 

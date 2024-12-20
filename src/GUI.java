@@ -14,20 +14,82 @@ import java.util.Queue;
 
 public class GUI extends JFrame {
     File folder = new File("src/decks");
-    // test array
-    File[] listOfFiles = folder.listFiles();
 
-    // use method to split folder names and reformat it
+    File[] listOfFiles = folder.listFiles(); // loads deck folders
+
+    // use method to split folder names to be able to display
     String[] listOfTopics = convertToTopic(listOfFiles);
 
 
     // make middle portion of GUI
     public JPanel makeMenu(JPanel menu, JFrame window){
 
+        // grid layout
+        JPanel subPanel = new JPanel(); // stores all the components
+        subPanel.setLayout(new GridLayout(4, 1, 5,10));
 
+        // button + dropdown container
+        JPanel dropdownCombo = new JPanel(); // for dropdown and "go" button
+        dropdownCombo.setLayout(new GridLayout(1, 2, 10, 10));
+
+        // Label
+        JLabel unitDescription = new JLabel("select unit");
+        unitDescription.setHorizontalAlignment(JLabel.CENTER);
+        unitDescription.setFont(new Font("Tahoma", Font.BOLD, 20));
+
+        // Dropdown
+        JComboBox unitSelect = new JComboBox(listOfTopics); // uses array to display all the topics
+
+        // Button
+        JButton goButton = new JButton("go");
+        goButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                // change from main menu to quiz
+                int selected = unitSelect.getSelectedIndex(); //takes in the input from the dropdown box
+
+                window.getRootPane().getContentPane().removeAll();
+                window.add(makeQuiz(window, selected, false)); // uses makeQuiz method to make a quiz with desired topic
+                window.setSize(920,850); // changes size to increase visibility
+                window.setLocationRelativeTo(null); // centers frame
+                window.revalidate();
+                window.repaint();
+            }
+        });
+
+        // Challenge Mode
+        JButton challengeButton = new JButton("challenge mode");
+        challengeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                window.getRootPane().getContentPane().removeAll();
+
+                window.add(makeQuiz(window, 0, true)); // 0 for "selected" because challenge mode combines all the decks & boolean signifies that
+                window.setSize(920,850); // changes size to increase visibility
+                window.setLocationRelativeTo(null); // centers frame
+                window.revalidate();
+                window.repaint();
+
+            }
+        });
+
+
+
+        // add to dropdown and button container
+        dropdownCombo.add(unitSelect);
+        dropdownCombo.add(goButton);
+        subPanel.add(unitDescription);
+        subPanel.add(dropdownCombo);
+        subPanel.add(challengeButton);
+        subPanel.add(makeHelpButton()); // uses method to create button that creates help window
+
+        menu.add(subPanel);
+        return menu;
+    }
+
+    public JButton makeHelpButton(){
         // boolean has to be final to be accessed within
         final boolean[] isHelpOpen = {false};
-
         WindowListener checkOpenWindow = new WindowAdapter() {
             public void windowOpened(WindowEvent evt) {
                 Frame frame = (Frame) evt.getSource();
@@ -54,8 +116,6 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e){
                 JFrame helpWindow = new JFrame("help");
                 helpWindow.addWindowListener(checkOpenWindow);
-
-
 
                 // makes sure that help can only be opened once
                 while (!isHelpOpen[0]) {
@@ -92,7 +152,7 @@ public class GUI extends JFrame {
                             editorPane.setText("<html>Page not found.</html>");
                         }
 
-                        // adds components to the helpWindwow
+                        // adds components to the helpWindow
                         container.add(scroll);
                         helpWindow.getContentPane().add(container, BorderLayout.CENTER);
 
@@ -108,62 +168,7 @@ public class GUI extends JFrame {
 
         });
 
-
-        // grid layout
-        JPanel subPanel = new JPanel();
-        subPanel.setLayout(new GridLayout(4, 1, 5,10));
-
-        // button + dropdown container
-        JPanel dropdownCombo = new JPanel();
-        dropdownCombo.setLayout(new GridLayout(1, 2, 10, 10));
-
-        // Label
-        JLabel unitDescription = new JLabel("select unit");
-        unitDescription.setHorizontalAlignment(JLabel.CENTER);
-        unitDescription.setFont(new Font("Tahoma", Font.BOLD, 20));
-
-        // Dropdown
-        JComboBox unitSelect = new JComboBox(listOfTopics);
-
-        // Button
-        JButton goButton = new JButton("go");
-        goButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                // change from main menu to quiz
-                int selected = unitSelect.getSelectedIndex();
-
-                window.getRootPane().getContentPane().removeAll();
-                window.add(makeQuiz(window, selected, false));
-                window.revalidate();
-                window.repaint();
-            }
-        });
-
-        // Challenge Mode
-        JButton challengeButton = new JButton("challenge mode");
-        challengeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                window.getRootPane().getContentPane().removeAll();
-
-                window.add(makeQuiz(window, 0, true));
-                window.revalidate();
-                window.repaint();
-
-            }
-        });
-
-        // add to dropdown and button container
-        dropdownCombo.add(unitSelect);
-        dropdownCombo.add(goButton);
-        subPanel.add(unitDescription);
-        subPanel.add(dropdownCombo);
-        subPanel.add(challengeButton);
-        subPanel.add(helpButton);
-
-        menu.add(subPanel);
-        return menu;
+        return helpButton;
     }
 
 
@@ -174,11 +179,11 @@ public class GUI extends JFrame {
         String key;
 
 
-        if (!isChallenge){
+        if (!isChallenge){ // if parameter passed that it isn't a challenge then deck is loaded regularly
              folderPath = listOfFiles[selected].getPath();
              key = folderPath + "/key.txt";
         }
-        else {
+        else { // if it is a challenge, the strings are set to "null" as they won't be used
             folderPath = "null";
             key = "null";
         }
@@ -386,6 +391,7 @@ public class GUI extends JFrame {
                     buttonHolder.add(noButton);
                     buttonHolder.add(yesButton);
 
+
                     newCardHolder.add(frontAndBack[1]);
                     newCardHolder.add(buttonHolder);
                     newQuiz.add(newCardHolder, cardHolderLayout);
@@ -464,6 +470,8 @@ public class GUI extends JFrame {
 
                 
                 window.add(mainPanel);
+                window.setSize(720,650);
+                window.setLocationRelativeTo(null); // centers the window
 
                 window.revalidate();
                 window.repaint();
@@ -555,9 +563,13 @@ public class GUI extends JFrame {
         descSeparator.setBackground(Color.white);
         backCardHolder.add(descSeparator);
 
-
+        JTextArea backDescription = new JTextArea(x.getBackDescription());
         // gets the card's back description and adds it to the display panel
-        backCardHolder.add(new JLabel(x.getBackDescription(), SwingConstants.CENTER));
+
+        String html = "<html><body style='width: %1spx'>%1s";
+        JPanel descriptionHolder = new JPanel();
+        descriptionHolder.add(new JLabel(String.format(html, 400, x.getBackDescription())));
+        backCardHolder.add(descriptionHolder);
 
         // creates buttons/button holders so you can answer whether you won -> yes or no
         JPanel buttonHolder = new JPanel();
@@ -567,7 +579,7 @@ public class GUI extends JFrame {
         cardHolderLayout.anchor =  GridBagConstraints.CENTER;
 
 
-        toReturn[1]= backCardHolder;
+        toReturn[1] = backCardHolder;
 
         return toReturn;
 
