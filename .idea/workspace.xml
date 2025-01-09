@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="updates to text display and card info">
-      <change afterPath="$PROJECT_DIR$/src/decks/topic_2/sixteen.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QueueSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueueSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decks/topic_1/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/decks/topic_1/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decks/topic_2/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/decks/topic_2/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decks/topic_2/sixteen.webp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

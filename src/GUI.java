@@ -230,7 +230,10 @@ public class GUI extends JFrame {
 
         // gets the image of the card and adds it to the display panel
         JPanel imageContainer = new JPanel();
-        Image image = x.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+
+        ImageIcon imageIcon = x.getImageIcon();
+        Image im = imageIcon.getImage();
+        Image image = im.getScaledInstance(imageIcon.getIconWidth()/3, imageIcon.getIconWidth()/3, Image.SCALE_SMOOTH);
         imageContainer.add(new JLabel(new ImageIcon(image)));
         cardHolder.add(imageContainer);
 
@@ -508,14 +511,18 @@ public class GUI extends JFrame {
     public String[] convertToTopic(File[] input){
         String[] toReturn = new String[input.length];
         for (int i = 0; i < input.length; i++){
+            String name = input[i].getName();
+            if (!name.contains(".DS")){
+                String toSplit = name;
 
-            String toSplit = input[i].getName();
+                String[] splitArray = toSplit.split("_",5);
+                String topic = splitArray[0];
+                String number = splitArray[1];
 
-            String[] splitArray = toSplit.split("_",5);
-            String topic = splitArray[0];
-            String number = splitArray[1];
+                toReturn[i] = topic + " " + number;
+            }
 
-            toReturn[i] = topic + " " + number;
+
         }
 
         return toReturn;
@@ -534,9 +541,12 @@ public class GUI extends JFrame {
 
         // gets the image of the card and adds it to the display panel
         JPanel imageContainer = new JPanel();
-        Image image = x.getImage().getScaledInstance(200, 200, Image.SCALE_AREA_AVERAGING);
-        imageContainer.add(new JLabel(new ImageIcon(image)));
-        frontCardHolder.add(imageContainer);
+
+
+        ImageIcon imageIcon = x.getImageIcon();
+        Image im = imageIcon.getImage();
+        Image image = im.getScaledInstance(imageIcon.getIconWidth()/2, imageIcon.getIconWidth()/2, Image.SCALE_SMOOTH);
+        frontCardHolder.add(new JLabel(new ImageIcon(image)));
 
         // gets the card's description and adds it to the display panel
         frontCardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
@@ -552,10 +562,6 @@ public class GUI extends JFrame {
 
         JPanel backCardHolder = new JPanel();
         backCardHolder.setLayout(new GridLayout(4,0));
-        // gets the image of the card and adds it to the display panel
-        JPanel backImageContainer = new JPanel();
-        backImageContainer.add(new JLabel(new ImageIcon(x.getImage())));
-        backCardHolder.add(backImageContainer);
 
         // gets the card's front description and adds it to the display panel
         backCardHolder.add(new JLabel(x.getFrontDescription(), SwingConstants.CENTER));
@@ -566,7 +572,6 @@ public class GUI extends JFrame {
         descSeparator.setBackground(Color.white);
         backCardHolder.add(descSeparator);
 
-        JTextArea backDescription = new JTextArea(x.getBackDescription());
         // gets the card's back description and adds it to the display panel
 
         String html = "<html><body style='width: %1spx'>%1s";

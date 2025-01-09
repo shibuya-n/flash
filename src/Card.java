@@ -29,7 +29,7 @@ public class Card {
         return backDescription;
     }
 
-    public Image getImage(){
+    public ImageIcon getImageIcon(){
         BufferedImage myPicture = null;
         try {
             myPicture = ImageIO.read(new File(cardFile.getAbsolutePath()));
@@ -38,9 +38,7 @@ public class Card {
         }
 
         ImageIcon imageIcon = new ImageIcon(myPicture);
-        Image image = imageIcon.getImage();
-        Image toReturn = image.getScaledInstance(60,60, Image.SCALE_SMOOTH);
 
-        return toReturn;
+        return imageIcon;
     }
 }
