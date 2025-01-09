@@ -230,7 +230,8 @@ public class GUI extends JFrame {
 
         // gets the image of the card and adds it to the display panel
         JPanel imageContainer = new JPanel();
-        imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
+        Image image = x.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+        imageContainer.add(new JLabel(new ImageIcon(image)));
         cardHolder.add(imageContainer);
 
         // gets the card's description and adds it to the display panel
@@ -530,9 +531,11 @@ public class GUI extends JFrame {
         frontCardHolder.setLayout(new GridLayout(2,0));
 
 
+
         // gets the image of the card and adds it to the display panel
         JPanel imageContainer = new JPanel();
-        imageContainer.add(new JLabel(new ImageIcon(x.getImage())));
+        Image image = x.getImage().getScaledInstance(200, 200, Image.SCALE_AREA_AVERAGING);
+        imageContainer.add(new JLabel(new ImageIcon(image)));
         frontCardHolder.add(imageContainer);
 
         // gets the card's description and adds it to the display panel

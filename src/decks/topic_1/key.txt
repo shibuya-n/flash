@@ -1,1 +1,1 @@
-one : central processing unit : hardware component that can perform basic arithmetic and logical operations; contains the control unit, arithmetic logic unit, memory addr
+one : central processing unit : hardware component that can perform basic arithmetic and logical operations; contains the control unit, arithmetic logic unit, memory address

@@ -1,0 +1,21 @@
+one : hyptertext transfer protocol (HTTP) : used to exchange information over the World Wide Web. It is the system of ruels which defines how clinets make request messages and servers make response messages
+two : domain name system (DNS) : component of the internet standard protocol responsible for converting human-friendly domain names into the internet protocol
+three : IP address : a unique address that identifies a device on the internet or a local network 
+four : media access control (MAC) address : a unique, 12-character alphanumeric attribute that is used to identify individual electronic devices on a network 
+five : packet switching : the process of transmitting data over a network by breaking it down into small units called "packets" 
+six : bandwith : the maximum amount of data that can be transmitted over the netwwork in a given time period 
+seven : latency : delay that happens between when user takes an action on a network of web application and when it reaches destination 
+eight : network interface card (NIC) : a circuit board that is installed on a computer to connect to the network 
+nine : router : receives and sends data on computer networks
+ten : switch : a device in a comptuer network that connects other devices together 
+eleven : hub : the connection point for devices on a single network. network devices and computer systems connect to a hub using Ethernet cables attached to a port
+twelve : firewall : hardware or software infrastructure controlling data flow 
+thirteen : network security : network security is the protection of the underlying networking infrastructure from unauthorized access, misuse, or theft. it involves creating a secure infrastructure for devices, applications, and users to work in a secure manner
+fourteen : encryption : encryption is a way to conceal information by altering it so that it appears to be random data. Encryption is essential for security on the Internet
+fifteen : wireless networks : a wireless network, whether PAN, LAN, MAN, or WAN, helps users connect wirelessly with your network, the internet, and each other 
+sixteen : Wi-Fi : a wireless networking technology that uses radio wavs to provide wireless high-speed Internet access 
+seventeen : Bluetooth : uses microwave radio to exchange data 
+eighteen : data transmission : data transmission is sending and receiving digital or analog data between device s
+nineteen : fiber optics : optical fiber that carries a beam of light. very expensive, offers higher speeds, and is extremely secure. it is used for data transmission and telephone lines
+twenty : coaxial cable : consists of two copper conductors. used in comptuer networks, as well as to carry TV signals. Low cost of installation 
+twenty one : Ethernet : the traditional technology for connecting devices in a wired local area network (LAN) or wide area network 

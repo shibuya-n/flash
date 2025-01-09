@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -70,13 +71,15 @@ public class QueueSystem {
 
 
         // first need to make a fileReader object
-        FileReader input = new FileReader(key);
+        FileInputStream fis = new FileInputStream(key);
         // then use buffered reader to read through it
-        BufferedReader buffReader = new BufferedReader(input);
+        BufferedReader buffReader = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
 
         while (buffReader.ready()){
             // gets the information for the card and its fileName
-            String[] parsedKey = parseDescription(buffReader.readLine());
+            String print = buffReader.readLine();
+            String[] parsedKey = parseDescription(print);
+
 
             // finds the corresponding file by looking through the fileDeck with a for loop -> if the fileName and the file's name match then a new card is created -> added to the cardDeck
             for (int i = 0; i < fileDeck.size(); i++){
@@ -86,10 +89,13 @@ public class QueueSystem {
                 String[] splitFile = file.split("\\.", 2);
                 String fileName = splitFile[0];
 
-                String frontDescription = parsedKey[1];
-                String backDescription = parsedKey[2];
+
 
                 if (parsedKey[0].equals(fileName)){
+                    String frontDescription = parsedKey[1];
+
+                    String backDescription = parsedKey[2];
+
                     
                     Card x = new Card(getFile, frontDescription, backDescription);
                     cardDeck.add(x);

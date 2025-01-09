@@ -5,7 +5,7 @@ four : register : a component that stores data/instructions for processing
 five : memory address register (MAR) : holds the address of the data to be used by the ALU; located in the control unit
 six : memory data register (MDR) : holds the data that is to be used by the ALU and then saved to the 'RAM'; located in the control unit
 seven : primary memory : memory that the CPU accesses directly; is volatile (loses its contents when it is shut off)
-eight : random access memory (RAM): stores current executing
+eight : random access memory (RAM) : stores current executing
 nine : cache memory : a small, high-speed memory located close to the CPU that stores frequently accessed data and instructions to speed up processing
 ten : read-only memory (ROM) : non-volatile (data isn't lost when shut off) memory used to store firmware or software that is rarely changed
 eleven : secondary memory : non-volatile storage that holds data and programs not actively in use, such as hard drives or SSDs

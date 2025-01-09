@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="518c2e26-0062-4bac-a47b-4d3fda3a52d8" name="Changes" comment="updates to text display and card info">
+      <change afterPath="$PROJECT_DIR$/src/decks/topic_2/sixteen.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decks/topic_1/four.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QueueSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueueSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decks/topic_1/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/decks/topic_1/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decks/topic_1/three.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decks/topic_1/two.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decks/topic_2/eight.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/decks/topic_2/eight.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decks/topic_2/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/decks/topic_2/key.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decks/topic_2/sixteen.webp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +50,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Andy Duong\IdeaProjects\flash\src\decks\topic_2" />
       <recent name="C:\Users\Andy Duong\IdeaProjects\flash\src\decks\topic_1" />
       <recent name="C:\Users\Andy Duong\IdeaProjects\flash\src" />
     </key>
@@ -307,7 +308,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734706725343</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="updates to text display and card info">
+      <option name="closed" value="true" />
+      <created>1736255591254</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1736255591254</updated>
+    </task>
+    <task id="LOCAL-00032" summary="updates to text display and card info">
+      <option name="closed" value="true" />
+      <created>1736255658800</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1736255658800</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
