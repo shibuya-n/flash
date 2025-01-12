@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Card {
 
-    private File cardFile;
+    private File    cardFile;
     private String frontDescription;
     private String backDescription;
 

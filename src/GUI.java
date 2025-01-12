@@ -537,12 +537,6 @@ public class GUI extends JFrame {
         JPanel frontCardHolder = new JPanel();
         frontCardHolder.setLayout(new GridLayout(2,0));
 
-
-
-        // gets the image of the card and adds it to the display panel
-        JPanel imageContainer = new JPanel();
-
-
         ImageIcon imageIcon = x.getImageIcon();
         Image im = imageIcon.getImage();
         Image image = im.getScaledInstance(imageIcon.getIconWidth()/3, imageIcon.getIconWidth()/3, Image.SCALE_SMOOTH);
